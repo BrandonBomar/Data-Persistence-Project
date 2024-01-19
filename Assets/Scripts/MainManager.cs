@@ -31,7 +31,9 @@ public class MainManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        
+        GameManager.Instance.LoadGameData();
+        HighScoreText.text = "High Score : " + GameManager.Instance.bestName + " : " + GameManager.Instance.highScore;
     }
     // Start is called before the first frame update
     void Start()
@@ -84,6 +86,7 @@ public class MainManager : MonoBehaviour
 
     public void GameOver()
     {
+        GameManager.Instance.SetHighScore(m_Points);
         m_GameOver = true;
         GameOverText.SetActive(true);
     }
